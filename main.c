@@ -6,9 +6,10 @@ int main() {
   lista = criaLista();
 
   insIncLista(lista, 5);
-  printf("%p\n", (void *)lista->inic->prox);
+  printf("%d\n",lista->inic->val);
   insIncLista(lista, 3);
-  printf("%p\n", (void *)lista->inic->prox);
-  
+  printf("%d\n",lista->inic->val);
+  printf("%d\n",lista->inic->prox->val);
+
   return 0;
 }
