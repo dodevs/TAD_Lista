@@ -10,4 +10,6 @@ struct lista {
 
 lista_t * criaLista();
 
-void insIncLista(lista_t *l, int v);
+void inserirNoInicio(lista_t *l, int v);
+
+void inserirNoFinal(lista_t *l, int v);
