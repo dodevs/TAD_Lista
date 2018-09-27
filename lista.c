@@ -12,6 +12,14 @@ lista_t * criaLista() {
 }
 
 void inserirNoInicio(lista_t *l, int v) {
+  /*
+  Cell *new = create_cell(info);
+  new->next = lst->first;
+  lst->first = new;
+  lst->size++;
+  if(lst->size == 1)
+    lst->last = new;
+  */
   no_t *no = criaNo(v);
 
   if(l->tam > 0){
@@ -41,3 +49,14 @@ void inserirNoFinal(lista_t *l, int v) {
   }
   l->tam++;
 }
+
+/*
+void freeList(List *lst){
+  Cell *c = lst->first;
+  while(c != NULL){
+    Cell *next = c->next;
+    freeCell(c);
+    c = next;
+  }
+  free(lst);
+*/
