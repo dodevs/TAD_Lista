@@ -1,6 +1,41 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "lista.h"
+#include "no.h"
+
+struct lista {
+  no_t *inic;
+  no_t *fim;
+  int tam;
+};
+
+/* SETTERS */
+void lista_setInic(lista_t *l, no_t *inic) {
+  l->inic = inic;
+}
+
+void lista_setFim(lista_t *l, no_t *fim) {
+  l->fim = fim;
+}
+
+void lista_setTam(lista_t *l, int tam) {
+  l->tam = tam;
+}
+/* SETTERS */
+
+/* GETTERS */
+no_t *lista_getInic(lista_t *l) {
+  return l->inic;
+}
+
+no_t *lista_getFim(lista_t *l) {
+  return l->fim;
+}
+
+int lista_getTam(lista_t *l) {
+  return l->tam;
+}
+/* GETTERS */
 
 lista_t * criaLista() {
   lista_t *l;
@@ -12,27 +47,12 @@ lista_t * criaLista() {
 }
 
 void inserirNoInicio(lista_t *l, int v) {
-  /*
-  Cell *new = create_cell(info);
-  new->next = lst->first;
-  lst->first = new;
-  lst->size++;
-  if(lst->size == 1)
-    lst->last = new;
-  */
   no_t *no = criaNo(v);
-
-  if(l->tam > 0){
-    no_t *x = l->inic;
-    x->ant = no;
-    no->prox = x;
-    l->inic = no;
-  }else{
-    l->inic = no;
-    l->fim = no;
-  }
-
+  no_setProx(no,l->inic);
+  l->inic = no;
   l->tam++;
+  if(l->tam == 1)
+    l->fim = no;
 }
 
 void inserirNoFinal(lista_t *l, int v) {
@@ -41,8 +61,8 @@ void inserirNoFinal(lista_t *l, int v) {
   if(l->tam > 0) {
     no_t *noF = l->fim;
     l->fim = no;
-    no->ant = noF;
-    noF->prox = no;
+    no_setAnt(no, noF);
+    no_setProx(noF, no);
   }else {
     l->inic = no;
     l->fim = no;
@@ -50,13 +70,16 @@ void inserirNoFinal(lista_t *l, int v) {
   l->tam++;
 }
 
-/*
-void freeList(List *lst){
-  Cell *c = lst->first;
-  while(c != NULL){
-    Cell *next = c->next;
-    freeCell(c);
-    c = next;
+void destroiLista(lista_t *l) {
+  no_t *no = l->inic;
+  while(no != NULL) {
+    no_t *prox = no_getProx(no);
+    destroiNo(no);
+    no = prox;
   }
-  free(lst);
-*/
+  free(l);
+}
+
+int tamanhoLista(lista_t *l) {
+  return l->tam;
+}
