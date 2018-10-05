@@ -106,7 +106,7 @@ int tamanhoLista(lista_t *l) {
   return l->tam;
 }
 
-void imprimirLista(lista_t *l) {
+void imprimeLista(lista_t *l) {
   no_t *no = l->inic;
   while(no != NULL) {
     if(no_getProx(no) != NULL)

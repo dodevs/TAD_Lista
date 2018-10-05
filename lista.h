@@ -29,6 +29,6 @@ void destroiLista(lista_t *l);
 
 int tamanhoLista(lista_t *l);
 
-void imprimirLista(lista_t *l);
+void imprimeLista(lista_t *l);
 
 #endif /*_LISTA_H*/
