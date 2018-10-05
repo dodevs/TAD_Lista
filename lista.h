@@ -23,8 +23,12 @@ void inserirNoInicio(lista_t *l, int v);
 
 void inserirNoFinal(lista_t *l, int v);
 
+void inserirNaPosicao(lista_t *l, int val, int pos);
+
 void destroiLista(lista_t *l);
 
 int tamanhoLista(lista_t *l);
+
+void imprimirLista(lista_t *l);
 
 #endif /*_LISTA_H*/

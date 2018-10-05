@@ -70,6 +70,27 @@ void inserirNoFinal(lista_t *l, int v) {
   l->tam++;
 }
 
+void inserirNaPosicao(lista_t *l, int pos, int val) {
+  if(pos == 0){
+    inserirNoInicio(l,val);
+  }else if(pos == l->tam) {
+    inserirNoFinal(l, val);
+  }else{
+    no_t *ant = lista_getInic(l);
+    no_t *no = criaNo(val);
+
+    int count = 1;
+    while(no != NULL && pos != count) {
+      ant = no_getProx(ant);
+      count++;
+    }
+    no_setProx(no, no_getProx(ant));
+    no_setAnt(no, ant);
+    no_setProx(ant, no);
+    no_setAnt(no_getProx(no), no);
+  }
+}
+
 void destroiLista(lista_t *l) {
   no_t *no = l->inic;
   while(no != NULL) {
@@ -82,4 +103,15 @@ void destroiLista(lista_t *l) {
 
 int tamanhoLista(lista_t *l) {
   return l->tam;
+}
+
+void imprimirLista(lista_t *l) {
+  no_t *no = l->inic;
+  while(no != NULL) {
+    if(no_getProx(no) != NULL)
+      printf("%d <-> ", no_getVal(no));
+    else
+      printf("%d\n", no_getVal(no));
+    no = no_getProx(no);
+  }
 }
