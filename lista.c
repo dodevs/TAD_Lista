@@ -88,6 +88,7 @@ void inserirNaPosicao(lista_t *l, int pos, int val) {
     no_setAnt(no, ant);
     no_setProx(ant, no);
     no_setAnt(no_getProx(no), no);
+    l->tam++;
   }
 }
 
